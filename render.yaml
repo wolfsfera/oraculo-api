@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: oraculo-api
+    env: python
+    region: frankfurt  # Europe - mejor para Binance
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api_server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: QUOTE_CURRENCIES
+        value: USDT,USDC
+      - key: RVOL_THRESHOLD
+        value: 5.0
+      - key: SCAN_INTERVAL
+        value: 60
+      - key: MIN_VOLUME_USD
+        value: 100000
