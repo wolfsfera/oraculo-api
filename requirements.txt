@@ -9,7 +9,6 @@ websockets>=12.0
 asyncio-throttle>=1.0.0
 
 # Technical Analysis
-ta-lib>=0.4.28
 scipy>=1.11.0
 
 # Utilities
