@@ -152,7 +152,13 @@ app = FastAPI(
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción: solo dominios permitidos
+    allow_origins=[
+        "http://localhost:3000",
+        "https://www.wolfsfera.com",
+        "https://wolfsfera.com",
+        "https://wolfsfera-hub.vercel.app", 
+        "*"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
