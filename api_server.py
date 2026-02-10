@@ -106,6 +106,10 @@ class OraculoAPIEngine:
     
     async def run_continuous(self):
         """Loop de escaneo continuo"""
+        # Inicializar primero (ahora que está en background)
+        if not self.scanner.active_pairs:  # Comprobar si ya está inicializado para evitar doble init
+             await self.initialize()
+
         self.running = True
         
         while self.running:
@@ -129,9 +133,7 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("🚀 Iniciando Oráculo API...")
     scanner_engine = OraculoAPIEngine()
-    await scanner_engine.initialize()
-    
-    # Iniciar scanner en background
+    # Mover inicialización a background para no bloquear arranque
     asyncio.create_task(scanner_engine.run_continuous())
     
     yield
